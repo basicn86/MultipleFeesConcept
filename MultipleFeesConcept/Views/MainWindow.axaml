@@ -19,8 +19,8 @@
 
 	<StackPanel Spacing="10" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 		<TextBlock>Enter Loan Number</TextBlock>
-		<TextBox AcceptsReturn="False" AcceptsTab="False"></TextBox>
-		<Button Name="OpenLoanBtn" HorizontalAlignment="Center">Open</Button>
+		<TextBox Text="{Binding LoanNumber}" AcceptsReturn="False" AcceptsTab="False"></TextBox>
+		<Button Command="{Binding ShowFeesCommand}" HorizontalAlignment="Center">Open</Button>
 	</StackPanel>
 
 </Window>
