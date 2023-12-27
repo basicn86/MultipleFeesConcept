@@ -9,7 +9,7 @@ namespace MultipleFeesConcept.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private int _loanNumber;
+        private int? _loanNumber;
         public string LoanNumber
         {
             set
@@ -20,10 +20,21 @@ namespace MultipleFeesConcept.ViewModels
                 }
                 else
                 {
-                    _loanNumber = 0;
+                    _loanNumber = null;
                 }
             }
-            get => _loanNumber.ToString();
+            get
+            {
+                if (_loanNumber == null)
+                {
+                    return "";
+                }
+                else
+                {
+
+                    return _loanNumber.ToString();
+                }
+            }
         }
 
         public MainWindowViewModel()
