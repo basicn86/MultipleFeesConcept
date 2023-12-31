@@ -22,7 +22,7 @@
 		</StackPanel>
 		
 		<StackPanel Orientation="Vertical" Grid.Column="1">
-			<ListBox ItemsSource="{Binding fees}" SelectionMode="Single">
+			<ListBox ScrollViewer.AllowAutoHide="False" Height="150" Width="300" ItemsSource="{Binding fees}" SelectedItem="{Binding SelectedFee}" SelectionMode="Single">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal" Spacing="20">
@@ -32,6 +32,7 @@
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
+			<TextBlock HorizontalAlignment="Center" Text="{Binding SelectedFee.Name}"/>
 		</StackPanel>
 	</Grid>
 </Window>
