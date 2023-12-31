@@ -27,6 +27,8 @@ namespace MultipleFeesConcept.ViewModels
             }
         }
 
+        public ObservableCollection<Fee> ObservableFees { get; }
+
         public FeesViewModel(Loan loan)
         {
             _context = new MortgageDbContext();
@@ -34,6 +36,8 @@ namespace MultipleFeesConcept.ViewModels
             Loan = loan;
 
             _context.Attach(Loan);
+
+            ObservableFees = new ObservableCollection<Fee>(Loan.Fees);
         }
 
         //save changes on closing
@@ -51,6 +55,7 @@ namespace MultipleFeesConcept.ViewModels
         public void RemoveFee()
         {
             Loan.Fees.Remove(SelectedFee);
+            ObservableFees.Remove(SelectedFee);
         }
     }
 }

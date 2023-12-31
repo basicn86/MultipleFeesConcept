@@ -15,7 +15,7 @@ namespace MultipleFeesConcept.Models
         public string borrower_name { get; set; } = "";
         public string address { get; set; } = "";
 
-        public virtual ObservableCollection<Fee> Fees { get; set; }
+        public virtual ICollection<Fee> Fees { get; set; }
     }
 
     public class Fee
