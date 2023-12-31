@@ -15,10 +15,10 @@
 			<ColumnDefinition Width="*"></ColumnDefinition>
 		</Grid.ColumnDefinitions>
 		
-		<StackPanel Orientation="Vertical" Grid.Column="0">
-			<TextBlock>hello</TextBlock>
-			<TextBlock>hello</TextBlock>
-			<TextBlock>hello</TextBlock>
+		<StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.Column="0">
+			<TextBlock Text="{Binding Loan.ID}"/>
+			<TextBlock Text="{Binding Loan.borrower_name}"/>
+			<TextBlock Text="{Binding Loan.address}"/>
 		</StackPanel>
 		
 		<StackPanel Orientation="Vertical" Grid.Column="1" Spacing="10">

@@ -10,9 +10,9 @@ namespace MultipleFeesConcept.Models
 {
     public class Loan
     {
-        public int ID = 0;
-        public string borrower_name = "";
-        public string address = "";
+        public int ID { get; set; } = 0;
+        public string borrower_name { get; set; } = "";
+        public string address { get; set; } = "";
     }
 
     public class MortgageDbContext : DbContext

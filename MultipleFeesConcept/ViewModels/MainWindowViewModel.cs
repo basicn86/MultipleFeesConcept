@@ -60,8 +60,25 @@ namespace MultipleFeesConcept.ViewModels
             ShowFeesCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 if (_loanNumber == null) return;
-                var feesViewModel = new FeesViewModel((int)_loanNumber);
-                await ShowDialog.Handle(feesViewModel);
+
+                try
+                {
+                    using MortgageDbContext db = new MortgageDbContext();
+                    db.Database.EnsureCreated();
+
+                    //get the loan from the database
+                    Loan? loan = (from l in db.Loan where l.ID == _loanNumber select l).ToArray()[0];
+
+                    //if loan is null, then the loan number was not found
+                    if (loan == null) return;
+
+                    var feesViewModel = new FeesViewModel(loan);
+                    await ShowDialog.Handle(feesViewModel);
+                }
+                catch (Exception e)
+                {
+                    
+                }
             });
 
             using MortgageDbContext db = new MortgageDbContext();

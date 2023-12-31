@@ -18,7 +18,8 @@ namespace MultipleFeesConcept.ViewModels
 
     public class FeesViewModel : ViewModelBase
     {
-        public string loanAmount { get; }
+
+        public Loan Loan { get; set; }
         public ObservableCollection<TestFee> Fees { get; } = new ObservableCollection<TestFee> {
             new TestFee { Id = 1, Name = "Potato" },
             new TestFee { Id = 3, Name = "Apple" },
@@ -41,9 +42,9 @@ namespace MultipleFeesConcept.ViewModels
             }
         }
 
-        public FeesViewModel(int _loanAmount)
+        public FeesViewModel(Loan loan)
         {
-            loanAmount = _loanAmount.ToString();
+            Loan = loan;
         }
 
         public void RemoveFee()
