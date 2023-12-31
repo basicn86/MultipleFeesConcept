@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Windows.Input;
+using MultipleFeesConcept.Models;
 using ReactiveUI;
 
 namespace MultipleFeesConcept.ViewModels
@@ -37,6 +39,19 @@ namespace MultipleFeesConcept.ViewModels
             }
         }
 
+        private string borrowerName;
+        public string BorrowerName
+        {
+            set
+            {
+                this.RaiseAndSetIfChanged(ref borrowerName, value);
+            }
+            get
+            {
+                return borrowerName;
+            }
+        }
+
         public MainWindowViewModel()
         {
 
@@ -48,6 +63,11 @@ namespace MultipleFeesConcept.ViewModels
                 var feesViewModel = new FeesViewModel((int)_loanNumber);
                 await ShowDialog.Handle(feesViewModel);
             });
+
+            MortgageDbContext db = new MortgageDbContext();
+            db.Database.EnsureCreated();
+            //get any loan
+            Loan loan = db.Loan.FirstOrDefault();
         }
 
         public ICommand ShowFeesCommand { get; }

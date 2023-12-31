@@ -18,6 +18,7 @@
     </Design.DataContext>
 
 	<StackPanel Spacing="10" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+		<TextBlock Text="{Binding BorrowerName}"/>
 		<TextBlock>Enter Loan Number</TextBlock>
 		<TextBox Text="{Binding LoanNumber}" AcceptsReturn="False" AcceptsTab="False"></TextBox>
 		<Button Command="{Binding ShowFeesCommand}" HorizontalAlignment="Center">Open</Button>
