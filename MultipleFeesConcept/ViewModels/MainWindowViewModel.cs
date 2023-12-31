@@ -44,7 +44,8 @@ namespace MultipleFeesConcept.ViewModels
 
             ShowFeesCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                var feesViewModel = new FeesViewModel(0);
+                if (_loanNumber == null) return;
+                var feesViewModel = new FeesViewModel((int)_loanNumber);
                 await ShowDialog.Handle(feesViewModel);
             });
         }
