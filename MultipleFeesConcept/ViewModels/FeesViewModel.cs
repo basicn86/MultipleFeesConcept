@@ -12,11 +12,10 @@ namespace MultipleFeesConcept.ViewModels
 {
     public class FeesViewModel : ViewModelBase
     {
+        private MortgageDbContext _context;
 
         public Loan Loan { get; set; }
-        public ObservableCollection<Fee> Fees { get; } = new ObservableCollection<Fee> {
-
-        };
+        public ObservableCollection<Fee> Fees { get; }
 
         private Fee _selectedFee;
         public Fee SelectedFee {
@@ -32,14 +31,31 @@ namespace MultipleFeesConcept.ViewModels
 
         public FeesViewModel(Loan loan)
         {
+            _context = new MortgageDbContext();
+
             Loan = loan;
 
-            Fees.Add(Loan.Fees.FirstOrDefault());
+            _context.Attach(Loan);
+
+            //Fees = new ObservableCollection<Fee>(Loan.Fees);
+        }
+
+        //save changes on closing
+        public async Task Closing()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        ~FeesViewModel()
+        {
+            //save changes
+            _context.Dispose();
         }
 
         public void RemoveFee()
         {
-            Fees.Remove(SelectedFee);
+            Loan.Fees.Remove(SelectedFee);
+            //Fees.Remove(SelectedFee);
         }
     }
 }

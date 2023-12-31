@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.ObjectModel;
 
 namespace MultipleFeesConcept.Models
 {
@@ -14,7 +15,7 @@ namespace MultipleFeesConcept.Models
         public string borrower_name { get; set; } = "";
         public string address { get; set; } = "";
 
-        public virtual ICollection<Fee> Fees { get; set; } = new List<Fee>();
+        public virtual ObservableCollection<Fee> Fees { get; set; }
     }
 
     public class Fee

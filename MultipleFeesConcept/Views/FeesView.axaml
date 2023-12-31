@@ -22,7 +22,7 @@
 		</StackPanel>
 		
 		<StackPanel Orientation="Vertical" Grid.Column="1" Spacing="10">
-			<ListBox ScrollViewer.AllowAutoHide="False" Height="150" Width="300" ItemsSource="{Binding Fees}" SelectedItem="{Binding SelectedFee}" SelectionMode="Single">
+			<ListBox ScrollViewer.AllowAutoHide="False" Height="150" Width="300" ItemsSource="{Binding Loan.Fees}" SelectedItem="{Binding SelectedFee}" SelectionMode="Single">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal" Spacing="20">

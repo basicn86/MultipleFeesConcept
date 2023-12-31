@@ -11,5 +11,10 @@ public partial class FeesView : ReactiveWindow<ViewModels.FeesViewModel>
     public FeesView()
     {
         InitializeComponent();
+
+        this.Closing += async (s, e) =>
+        {
+            await ViewModel!.Closing();
+        };
     }
 }
