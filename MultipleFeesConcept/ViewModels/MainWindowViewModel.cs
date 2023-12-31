@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
 using MultipleFeesConcept.Models;
 using ReactiveUI;
 
@@ -67,7 +68,7 @@ namespace MultipleFeesConcept.ViewModels
                     db.Database.EnsureCreated();
 
                     //get the loan from the database
-                    Loan? loan = (from l in db.Loan where l.ID == _loanNumber select l).ToArray()[0];
+                    Loan? loan = (from l in db.Loan.Include(f => f.Fees) where l.ID == _loanNumber select l).ToArray()[0];
 
                     //if loan is null, then the loan number was not found
                     if (loan == null) return;

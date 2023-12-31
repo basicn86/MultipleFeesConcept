@@ -26,8 +26,7 @@
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal" Spacing="20">
-							<TextBlock Text="{Binding Id}"/>
-							<TextBlock Text="{Binding Name}"/>
+							<TextBlock Text="{Binding ID}"/>
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
@@ -37,7 +36,7 @@
 				<Button Content="Add"/>
 				<Button Content="Remove" Command="{Binding RemoveFee}"/>
 			</StackPanel>
-			<TextBlock HorizontalAlignment="Center" Text="{Binding SelectedFee.Name}"/>
+			<TextBlock HorizontalAlignment="Center" Text="{Binding SelectedFee.ID}"/>
 		</StackPanel>
 	</Grid>
 </Window>
