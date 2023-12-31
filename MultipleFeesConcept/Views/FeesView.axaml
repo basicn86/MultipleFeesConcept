@@ -11,7 +11,7 @@
         Title="FeesView">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"></ColumnDefinition>
+			<ColumnDefinition Width="200"></ColumnDefinition>
 			<ColumnDefinition Width="*"></ColumnDefinition>
 		</Grid.ColumnDefinitions>
 		
@@ -22,9 +22,16 @@
 		</StackPanel>
 		
 		<StackPanel Orientation="Vertical" Grid.Column="1">
-			<TextBlock>hello</TextBlock>
-			<TextBlock>hello</TextBlock>
-			<TextBlock>hello</TextBlock>
+			<ListBox ItemsSource="{Binding fees}" SelectionMode="Single">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal" Spacing="20">
+							<TextBlock Text="{Binding Id}"/>
+							<TextBlock Text="{Binding Name}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 		</StackPanel>
 	</Grid>
 </Window>
