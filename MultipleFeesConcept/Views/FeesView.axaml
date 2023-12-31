@@ -21,8 +21,8 @@
 			<TextBlock>hello</TextBlock>
 		</StackPanel>
 		
-		<StackPanel Orientation="Vertical" Grid.Column="1">
-			<ListBox ScrollViewer.AllowAutoHide="False" Height="150" Width="300" ItemsSource="{Binding fees}" SelectedItem="{Binding SelectedFee}" SelectionMode="Single">
+		<StackPanel Orientation="Vertical" Grid.Column="1" Spacing="10">
+			<ListBox ScrollViewer.AllowAutoHide="False" Height="150" Width="300" ItemsSource="{Binding Fees}" SelectedItem="{Binding SelectedFee}" SelectionMode="Single">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal" Spacing="20">
@@ -32,6 +32,11 @@
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
+			<!--Add fee and remove fee button-->
+			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+				<Button Content="Add"/>
+				<Button Content="Remove" Command="{Binding RemoveFee}"/>
+			</StackPanel>
 			<TextBlock HorizontalAlignment="Center" Text="{Binding SelectedFee.Name}"/>
 		</StackPanel>
 	</Grid>

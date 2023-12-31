@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using DynamicData;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MultipleFeesConcept.ViewModels
 {
-    public struct TestFee
+    public class TestFee
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,7 +18,7 @@ namespace MultipleFeesConcept.ViewModels
     public class FeesViewModel : ViewModelBase
     {
         public string loanAmount { get; }
-        public ObservableCollection<TestFee> fees { get; } = new ObservableCollection<TestFee> {
+        public ObservableCollection<TestFee> Fees { get; } = new ObservableCollection<TestFee> {
             new TestFee { Id = 1, Name = "Potato" },
             new TestFee { Id = 3, Name = "Apple" },
             new TestFee { Id = 2, Name = "Orange" },
@@ -42,6 +43,11 @@ namespace MultipleFeesConcept.ViewModels
         public FeesViewModel(int _loanAmount)
         {
             loanAmount = _loanAmount.ToString();
+        }
+
+        public void RemoveFee()
+        {
+            Fees.Remove(SelectedFee);
         }
     }
 }
