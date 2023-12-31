@@ -39,16 +39,16 @@ namespace MultipleFeesConcept.ViewModels
             }
         }
 
-        private string borrowerName;
-        public string BorrowerName
+        private string availableLoans;
+        public string AvailableLoans
         {
             set
             {
-                this.RaiseAndSetIfChanged(ref borrowerName, value);
+                this.RaiseAndSetIfChanged(ref availableLoans, value);
             }
             get
             {
-                return borrowerName;
+                return availableLoans;
             }
         }
 
@@ -64,10 +64,17 @@ namespace MultipleFeesConcept.ViewModels
                 await ShowDialog.Handle(feesViewModel);
             });
 
-            MortgageDbContext db = new MortgageDbContext();
+            using MortgageDbContext db = new MortgageDbContext();
             db.Database.EnsureCreated();
-            //get any loan
-            Loan loan = db.Loan.FirstOrDefault();
+            
+            //get a max of 3 loans
+            List<Loan> loans = db.Loan.Take(3).ToList();
+
+            AvailableLoans = "";
+            foreach(Loan loan in loans)
+            {
+                AvailableLoans += loan.ID + " / " + loan.borrower_name + " / " + loan.address + "\n";
+            }
         }
 
         public ICommand ShowFeesCommand { get; }
