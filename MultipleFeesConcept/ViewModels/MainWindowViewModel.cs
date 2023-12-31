@@ -39,7 +39,7 @@ namespace MultipleFeesConcept.ViewModels
             }
         }
 
-        private string availableLoans;
+        private string availableLoans = "";
         public string AvailableLoans
         {
             set
