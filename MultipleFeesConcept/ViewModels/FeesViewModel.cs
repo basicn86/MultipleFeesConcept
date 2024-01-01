@@ -15,8 +15,8 @@ namespace MultipleFeesConcept.ViewModels
         private MortgageDbContext _context;
 
         public Loan Loan { get; set; }
-        private Fee _selectedFee;
-        public Fee SelectedFee {
+        private Fee? _selectedFee;
+        public Fee? SelectedFee {
             get
             {
                 return _selectedFee;
@@ -54,6 +54,7 @@ namespace MultipleFeesConcept.ViewModels
 
         public void RemoveFee()
         {
+            if (SelectedFee == null) return;
             Loan.Fees.Remove(SelectedFee);
             ObservableFees.Remove(SelectedFee);
         }
