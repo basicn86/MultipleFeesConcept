@@ -9,5 +9,8 @@
 		xmlns:vm="using:MultipleFeesConcept.ViewModels"
 		x:DataType="vm:AddFeeViewModel"
         Title="AddFeeView">
-  <Button Content="test" Command="{Binding AddBtn}"/>
+    <StackPanel>
+        <Button Content="Add Fee" Command="{Binding AddBtn}"/>
+		<Button Content="Cancel" Command="{Binding CancelBtn}"/>
+    </StackPanel>
 </Window>

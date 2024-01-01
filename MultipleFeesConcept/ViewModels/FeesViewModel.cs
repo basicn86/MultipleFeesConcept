@@ -47,8 +47,6 @@ namespace MultipleFeesConcept.ViewModels
             {
                 var addFeeViewModel = new AddFeeViewModel();
                 var result = await ShowDialog.Handle(addFeeViewModel);
-
-                Console.WriteLine();
             });
         }
 

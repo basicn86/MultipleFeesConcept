@@ -15,14 +15,16 @@ namespace MultipleFeesConcept.ViewModels
     {
         public AddFeeViewModel()
         {
-            Console.WriteLine();
-
             AddBtn = ReactiveCommand.Create(() =>
             {
                 return new Models.FeeType();
             });
+
+            CancelBtn = ReactiveCommand.Create(() => { return; });
         }
 
-        public ReactiveCommand<Unit, Models.FeeType?> AddBtn { get; }
+        public ReactiveCommand<Unit, Models.FeeType> AddBtn { get; }
+
+        public ReactiveCommand<Unit, Unit> CancelBtn { get; }
     }
 }
