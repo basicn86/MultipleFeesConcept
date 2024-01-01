@@ -26,7 +26,7 @@
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal" Spacing="20">
-							<TextBlock Text="{Binding ID}"/>
+							<TextBlock Text="{Binding FeeType.name}"/>
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>

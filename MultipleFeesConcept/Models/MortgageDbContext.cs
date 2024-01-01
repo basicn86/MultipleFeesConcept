@@ -21,7 +21,6 @@ namespace MultipleFeesConcept.Models
     public class Fee
     {
         public int ID { get; set; }
-        public int fee_type_id { get; set; }
         public int? poc_by_id { get; set; }
 
         public int? amount { get; set; }
@@ -30,6 +29,16 @@ namespace MultipleFeesConcept.Models
 
         [ForeignKey("loan_id")]
         public virtual Loan Loan { get; set; }
+
+        [ForeignKey("fee_type_id")]
+        public virtual FeeType FeeType { get; set; }
+    }
+
+    [Table("fee_type")]
+    public class FeeType
+    {
+        public int ID { get; set; }
+        public string name { get; set; } = "";
     }
 
     public class MortgageDbContext : DbContext
@@ -55,13 +64,19 @@ namespace MultipleFeesConcept.Models
             modelBuilder.Entity<Fee>(ent =>
             {
                 ent.HasKey(e => e.ID);
-                ent.Property(e => e.fee_type_id).IsRequired();
                 ent.Property(e => e.poc_by_id);
                 ent.Property(e => e.amount);
                 ent.Property(e => e.payee);
                 ent.Property(e => e.poc_amount);
 
                 ent.HasOne(e => e.Loan).WithMany(e => e.Fees);
+                ent.HasOne(e => e.FeeType);
+            });
+
+            modelBuilder.Entity<FeeType>(ent =>
+            {
+                ent.HasKey(e => e.ID);
+                ent.Property(e => e.name).IsRequired();
             });
         }
     }
