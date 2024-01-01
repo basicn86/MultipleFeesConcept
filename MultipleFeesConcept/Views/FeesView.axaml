@@ -33,7 +33,7 @@
 			</ListBox>
 			<!--Add fee and remove fee button-->
 			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-				<Button Content="Add"/>
+				<Button Content="Add" Command="{Binding AddFeeCommand}"/>
 				<Button Content="Remove" Command="{Binding RemoveFee}"/>
 			</StackPanel>
 			<TextBlock HorizontalAlignment="Center" Text="{Binding SelectedFee.ID}"/>

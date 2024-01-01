@@ -2,7 +2,10 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
+using MultipleFeesConcept.Models;
+using MultipleFeesConcept.ViewModels;
 using ReactiveUI;
+using System.Threading.Tasks;
 
 namespace MultipleFeesConcept.Views;
 
@@ -17,5 +20,16 @@ public partial class FeesView : ReactiveWindow<ViewModels.FeesViewModel>
         {
             await ViewModel!.Closing();
         };
+
+        //register the DoShowDialogAsync method
+        this.WhenActivated(action => action(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync)));
+    }
+
+    private async Task DoShowDialogAsync(InteractionContext<AddFeeViewModel, FeeType?> interactionContext)
+    {
+        var dialog = new AddFeeView();
+        dialog.DataContext = interactionContext.Input;
+        var result = await dialog.ShowDialog<FeeType?>(this);
+        interactionContext.SetOutput(result);
     }
 }
