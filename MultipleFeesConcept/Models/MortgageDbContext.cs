@@ -54,7 +54,7 @@ namespace MultipleFeesConcept.Models
         public DbSet<Loan> Loan { get; set; }
         public DbSet<FeeType> FeeType { get; set; }
         public DbSet<PocBy> PocBy { get; set; }
-
+        public DbSet<Fee> Fee { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySQL("server=localhost;database=mortgage;user=root;password=");

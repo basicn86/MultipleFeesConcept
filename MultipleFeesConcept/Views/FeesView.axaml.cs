@@ -5,6 +5,7 @@ using Avalonia.ReactiveUI;
 using MultipleFeesConcept.Models;
 using MultipleFeesConcept.ViewModels;
 using ReactiveUI;
+using System.Reactive;
 using System.Threading.Tasks;
 
 namespace MultipleFeesConcept.Views;
@@ -25,14 +26,24 @@ public partial class FeesView : ReactiveWindow<ViewModels.FeesViewModel>
         };
 
         //register the DoShowDialogAsync method
-        this.WhenActivated(action => action(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync)));
+        this.WhenActivated(action => action(ViewModel!.ShowAddFeeDialog.RegisterHandler(DoShowAddFeeDialogAsync)));
+        this.WhenActivated(action => action(ViewModel!.ShowChangeTrackerDialog.RegisterHandler(DoShowChangeTrackerDialogAsync)));
     }
 
-    private async Task DoShowDialogAsync(InteractionContext<AddFeeViewModel, FeeType?> interactionContext)
+    private async Task DoShowAddFeeDialogAsync(InteractionContext<AddFeeViewModel, FeeType?> interactionContext)
     {
         var dialog = new AddFeeView();
         dialog.DataContext = interactionContext.Input;
         var result = await dialog.ShowDialog<FeeType?>(this);
+        interactionContext.SetOutput(result);
+    }
+
+    private async Task DoShowChangeTrackerDialogAsync(InteractionContext<ChangeTrackerViewModel, Unit?> interactionContext)
+    {
+        var dialog = new ChangeTrackerView();
+        dialog.DataContext = interactionContext.Input;
+
+        var result = await dialog.ShowDialog<Unit?>(this);
         interactionContext.SetOutput(result);
     }
 }

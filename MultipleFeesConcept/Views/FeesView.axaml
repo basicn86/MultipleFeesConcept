@@ -61,6 +61,8 @@
 				<TextBlock VerticalAlignment="Center">Payee</TextBlock>
 				<TextBox Width="250" Text="{Binding SelectedFee.payee}"/>
 			</StackPanel>
+
+			<Button HorizontalAlignment="Center" Content="Show Changes" Command="{Binding ShowChangeTrackerCommand}"/>
 			
 		</StackPanel>
 	</Grid>
