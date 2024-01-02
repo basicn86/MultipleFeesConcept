@@ -15,6 +15,9 @@ public partial class FeesView : ReactiveWindow<ViewModels.FeesViewModel>
     {
         InitializeComponent();
 
+        //if design mode, return
+        if (Design.IsDesignMode) return;
+
         //notify viewmodel of closing
         Closing += async (s, e) =>
         {
