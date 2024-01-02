@@ -46,7 +46,7 @@ namespace MultipleFeesConcept.ViewModels
                     }
                 }
 
-                if (fee.amount - fee.poc_amount != 0)
+                if (fee?.amount - fee?.poc_amount != 0)
                 {
                     row.BorrowerAtClosing = "$" + (fee.amount - fee.poc_amount).ToString();
                 }
