@@ -45,20 +45,17 @@ namespace MultipleFeesConcept.ViewModels
 
             AddFeeCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                var addFeeViewModel = new AddFeeViewModel();
+                var addFeeViewModel = new AddFeeViewModel(_context);
                 FeeType? result = await ShowDialog.Handle(addFeeViewModel);
 
                 //return if null
                 if (result == null) return;
 
-                //attach the fee
-                _context.Attach(result);
-
                 //add the fee to the loan
                 Fee pendingFee = new Fee()
                 {
                     FeeType = result,
-                    Loan = Loan,
+                    Loan = Loan
                 };
 
                 //add the fee to the loan and observation collection

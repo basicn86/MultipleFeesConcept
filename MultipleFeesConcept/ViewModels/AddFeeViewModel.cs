@@ -23,7 +23,7 @@ namespace MultipleFeesConcept.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedFeeType, value);
         }
         public ObservableCollection<FeeType> FeeTypes { get; }
-        public AddFeeViewModel()
+        public AddFeeViewModel(MortgageDbContext mortgageDbContext)
         {
             AddBtn = ReactiveCommand.Create(() =>
             {
@@ -32,9 +32,8 @@ namespace MultipleFeesConcept.ViewModels
 
             CancelBtn = ReactiveCommand.Create(() => { return; });
 
-            using MortgageDbContext context = new MortgageDbContext();
             FeeTypes = new ObservableCollection<FeeType>();
-            FeeTypes.AddRange(context.FeeType.ToList());
+            FeeTypes.AddRange(mortgageDbContext.FeeType.ToList());
         }
 
         public ReactiveCommand<Unit, Models.FeeType> AddBtn { get; }
