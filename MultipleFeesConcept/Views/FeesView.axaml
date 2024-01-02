@@ -19,6 +19,7 @@
 			<TextBlock Text="{Binding Loan.ID}"/>
 			<TextBlock Text="{Binding Loan.borrower_name}"/>
 			<TextBlock Text="{Binding Loan.address}"/>
+			<Button Content="Closing Disclosure" Command="{Binding ShowClosingDisclosureCommand}"/>
 		</StackPanel>
 		
 		<StackPanel Orientation="Vertical" Grid.Column="1" Spacing="10">

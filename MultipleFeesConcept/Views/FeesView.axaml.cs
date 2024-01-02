@@ -28,6 +28,7 @@ public partial class FeesView : ReactiveWindow<ViewModels.FeesViewModel>
         //register the DoShowDialogAsync method
         this.WhenActivated(action => action(ViewModel!.ShowAddFeeDialog.RegisterHandler(DoShowAddFeeDialogAsync)));
         this.WhenActivated(action => action(ViewModel!.ShowChangeTrackerDialog.RegisterHandler(DoShowChangeTrackerDialogAsync)));
+        this.WhenActivated(action => action(ViewModel!.ShowClosingDisclosureDialog.RegisterHandler(DoShowClosingDisclosureDialogAsync)));
     }
 
     private async Task DoShowAddFeeDialogAsync(InteractionContext<AddFeeViewModel, FeeType?> interactionContext)
@@ -41,6 +42,15 @@ public partial class FeesView : ReactiveWindow<ViewModels.FeesViewModel>
     private async Task DoShowChangeTrackerDialogAsync(InteractionContext<ChangeTrackerViewModel, Unit?> interactionContext)
     {
         var dialog = new ChangeTrackerView();
+        dialog.DataContext = interactionContext.Input;
+
+        var result = await dialog.ShowDialog<Unit?>(this);
+        interactionContext.SetOutput(result);
+    }
+
+    private async Task DoShowClosingDisclosureDialogAsync(InteractionContext<ClosingDisclosureViewModel, Unit?> interactionContext)
+    {
+        var dialog = new ClosingDisclosureView();
         dialog.DataContext = interactionContext.Input;
 
         var result = await dialog.ShowDialog<Unit?>(this);
