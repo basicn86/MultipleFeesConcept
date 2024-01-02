@@ -22,9 +22,9 @@ namespace MultipleFeesConcept.Models
     {
         public int ID { get; set; }
 
-        public int? amount { get; set; }
+        public int amount { get; set; } = 0;
         public string? payee { get; set; } = "";
-        public int? poc_amount { get; set; }
+        public int poc_amount { get; set; } = 0;
 
         [ForeignKey("loan_id")]
         public virtual Loan Loan { get; set; }
@@ -74,9 +74,9 @@ namespace MultipleFeesConcept.Models
             modelBuilder.Entity<Fee>(ent =>
             {
                 ent.HasKey(e => e.ID);
-                ent.Property(e => e.amount);
+                ent.Property(e => e.amount).IsRequired();
                 ent.Property(e => e.payee);
-                ent.Property(e => e.poc_amount);
+                ent.Property(e => e.poc_amount).IsRequired();
 
                 ent.HasOne(e => e.Loan).WithMany(e => e.Fees);
                 ent.HasOne(e => e.FeeType);
