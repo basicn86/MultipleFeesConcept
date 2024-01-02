@@ -22,9 +22,9 @@ namespace MultipleFeesConcept.Models
     {
         public int ID { get; set; }
 
-        public int amount { get; set; } = 0;
+        public int? amount { get; set; } = 0;
         public string? payee { get; set; } = "";
-        public int poc_amount { get; set; } = 0;
+        public int? poc_amount { get; set; } = 0;
 
         [ForeignKey("loan_id")]
         public virtual Loan Loan { get; set; }
