@@ -30,6 +30,7 @@ namespace MultipleFeesConcept.ViewModels
         }
 
         public ObservableCollection<Fee> ObservableFees { get; }
+        public ObservableCollection<PocBy> PocByCollection { get; }
 
         public FeesViewModel(Loan loan)
         {
@@ -39,6 +40,7 @@ namespace MultipleFeesConcept.ViewModels
 
             _context.Attach(Loan);
 
+            PocByCollection = new ObservableCollection<PocBy>(_context.PocBy);
             ObservableFees = new ObservableCollection<Fee>(Loan.Fees);
 
             ShowDialog = new Interaction<AddFeeViewModel, FeeType?>();

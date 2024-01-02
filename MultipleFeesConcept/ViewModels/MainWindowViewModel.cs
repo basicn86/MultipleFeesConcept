@@ -68,7 +68,10 @@ namespace MultipleFeesConcept.ViewModels
                     db.Database.EnsureCreated();
 
                     //get the loan from the database
-                    Loan? loan = (from l in db.Loan.Include(f => f.Fees).ThenInclude(ft => ft.FeeType) where l.ID == _loanNumber select l).ToArray()[0];
+                    Loan? loan = (from l in db.Loan
+                                  .Include(f => f.Fees).ThenInclude(ft => ft.FeeType)
+                                  .Include(f => f.Fees).ThenInclude(pc => pc.PocBy)
+                                  where l.ID == _loanNumber select l).FirstOrDefault();
 
                     //if loan is null, then the loan number was not found
                     if (loan == null) return;

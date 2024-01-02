@@ -21,7 +21,6 @@ namespace MultipleFeesConcept.Models
     public class Fee
     {
         public int ID { get; set; }
-        public int? poc_by_id { get; set; }
 
         public int? amount { get; set; }
         public string? payee { get; set; } = "";
@@ -32,6 +31,8 @@ namespace MultipleFeesConcept.Models
 
         [ForeignKey("fee_type_id")]
         public virtual FeeType FeeType { get; set; }
+        [ForeignKey("poc_by_id")]
+        public virtual PocBy? PocBy { get; set; }
     }
 
     [Table("fee_type")]
@@ -41,10 +42,18 @@ namespace MultipleFeesConcept.Models
         public string name { get; set; } = "";
     }
 
+    [Table("poc_by")]
+    public class PocBy
+    {
+        public int ID { get; set; }
+        public string name { get; set; } = "";
+    }
+
     public class MortgageDbContext : DbContext
     {
         public DbSet<Loan> Loan { get; set; }
         public DbSet<FeeType> FeeType { get; set; }
+        public DbSet<PocBy> PocBy { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,16 +74,22 @@ namespace MultipleFeesConcept.Models
             modelBuilder.Entity<Fee>(ent =>
             {
                 ent.HasKey(e => e.ID);
-                ent.Property(e => e.poc_by_id);
                 ent.Property(e => e.amount);
                 ent.Property(e => e.payee);
                 ent.Property(e => e.poc_amount);
 
                 ent.HasOne(e => e.Loan).WithMany(e => e.Fees);
                 ent.HasOne(e => e.FeeType);
+                ent.HasOne(e => e.PocBy);
             });
 
             modelBuilder.Entity<FeeType>(ent =>
+            {
+                ent.HasKey(e => e.ID);
+                ent.Property(e => e.name).IsRequired();
+            });
+
+            modelBuilder.Entity<PocBy>(ent =>
             {
                 ent.HasKey(e => e.ID);
                 ent.Property(e => e.name).IsRequired();
