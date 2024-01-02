@@ -47,6 +47,7 @@ namespace MultipleFeesConcept.ViewModels
 
             ShowAddFeeDialog = new Interaction<AddFeeViewModel, FeeType?>();
             ShowChangeTrackerDialog = new Interaction<ChangeTrackerViewModel, Unit?>();
+            ShowClosingDisclosureDialog = new Interaction<ClosingDisclosureViewModel, Unit?>();
 
             AddFeeCommand = ReactiveCommand.CreateFromTask(async () =>
             {
@@ -131,6 +132,12 @@ namespace MultipleFeesConcept.ViewModels
                 var changeTrackerViewModel = new ChangeTrackerViewModel(TotalChanges);
                 await ShowChangeTrackerDialog.Handle(changeTrackerViewModel);
             });
+
+            ShowClosingDisclosureCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var closingDisclosureViewModel = new ClosingDisclosureViewModel(ObservableFees);
+                await ShowClosingDisclosureDialog.Handle(closingDisclosureViewModel);
+            });
         }
 
         //save changes on closing
@@ -154,8 +161,10 @@ namespace MultipleFeesConcept.ViewModels
 
         public ICommand AddFeeCommand { get; }
         public ICommand ShowChangeTrackerCommand { get; }
+        public ICommand ShowClosingDisclosureCommand { get; }
 
         public Interaction<AddFeeViewModel, FeeType?> ShowAddFeeDialog { get; set; }
         public Interaction<ChangeTrackerViewModel, Unit?> ShowChangeTrackerDialog { get; set; }
+        public Interaction<ClosingDisclosureViewModel, Unit?> ShowClosingDisclosureDialog { get; set; }
     }
 }
