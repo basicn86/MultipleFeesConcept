@@ -14,6 +14,9 @@ public partial class AddFeeView : ReactiveWindow<ViewModels.AddFeeViewModel>
     {
         InitializeComponent();
 
+#if DEBUG
+        if (Design.IsDesignMode) return;
+#endif
         this.WhenActivated(d => d(ViewModel!.AddBtn.Subscribe(Close)));
         this.WhenActivated(d => d(ViewModel!.CancelBtn.Subscribe(_ => Close())));
     }

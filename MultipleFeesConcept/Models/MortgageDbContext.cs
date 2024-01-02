@@ -44,6 +44,7 @@ namespace MultipleFeesConcept.Models
     public class MortgageDbContext : DbContext
     {
         public DbSet<Loan> Loan { get; set; }
+        public DbSet<FeeType> FeeType { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

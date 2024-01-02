@@ -9,8 +9,15 @@
 		xmlns:vm="using:MultipleFeesConcept.ViewModels"
 		x:DataType="vm:AddFeeViewModel"
         Title="AddFeeView">
-    <StackPanel>
-        <Button Content="Add Fee" Command="{Binding AddBtn}"/>
-		<Button Content="Cancel" Command="{Binding CancelBtn}"/>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="10">
+		<ListBox ScrollViewer.AllowAutoHide="False" ItemsSource="{Binding FeeTypes}" SelectedItem="{Binding SelectedFeeType}" Width="200">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding name}"/>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+        <Button HorizontalAlignment="Center" Content="Add Fee" Command="{Binding AddBtn}"/>
+		<Button HorizontalAlignment="Center" Content="Cancel" Command="{Binding CancelBtn}"/>
     </StackPanel>
 </Window>
